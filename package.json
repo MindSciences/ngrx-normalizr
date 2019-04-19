@@ -9,8 +9,7 @@
 		"prepublishOnly": "yarn aot",
 		"tsc": "rm -rf ./dist && tsc",
 		"aot": "rm -rf ./dist && ./node_modules/.bin/ngc",
-		"docs":
-			"rm -rf ./docs && typedoc --out ./docs --name ngrx-normalizr --readme ./README.md --module commonjs --target ES5 --theme default && yarn docs-github",
+		"docs": "rm -rf ./docs && typedoc --out ./docs --name ngrx-normalizr --readme ./README.md --module commonjs --target ES5 --theme default && yarn docs-github",
 		"docs-github": "touch ./docs/.nojekyll",
 		"test": "./node_modules/.bin/karma start karma-ci.conf.js"
 	},
