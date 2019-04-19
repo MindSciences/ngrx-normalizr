@@ -1,6 +1,6 @@
 {
 	"name": "ngrx-normalizr",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"description": "Normalizing state reducer for ngrx applications",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
@@ -18,7 +18,7 @@
 	"author": "Michael Krone <michael.krone@outlook.com>",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/michaelkrone/ngrx-normalizr"
+		"url": "https://github.com/claritasmind/ngrx-normalizr"
 	},
 	"license": "MIT",
 	"peerDependencies": {

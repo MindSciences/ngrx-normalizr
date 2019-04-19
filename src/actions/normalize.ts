@@ -35,6 +35,16 @@ export interface NormalizeActionPayload {
 }
 
 /**
+ * Interface for a normalize action payload
+ */
+export interface NormalizeClearActionPayload {
+	/**
+	 * The normalized schema key
+	 */
+	schemaKey: string;
+}
+
+/**
  * Interface for a remove action payload
  */
 export interface NormalizeRemoveActionPayload {
@@ -302,6 +312,11 @@ export class NormalizeActionTypes {
 	/**
 	 * Action type of the `SetData` action.
 	 */
+	static readonly CLEAR_DATA = `${ACTION_NAMESPACE} Clear Data`;
+
+	/**
+	 * Action type of the `SetData` action.
+	 */
 	static readonly SET_DATA = `${ACTION_NAMESPACE} Set Data`;
 
 	/**
@@ -332,6 +347,32 @@ export class NormalizeActionTypes {
 
 /**
  * Action for settings denormalized entities in the store.
+ * Also see `NormalizeClearActionPayload`.
+ */
+export class ClearData implements Action {
+	/**
+	 * The action type: `NormalizeActionTypes.CLEAR_DATA`
+	 */
+	readonly type = NormalizeActionTypes.CLEAR_DATA;
+
+	/**
+	 * The payload will be an object of the normalized entity map as `entities`
+	 * and the original sorted id's as an array in the `result` property.
+	 */
+	public payload: NormalizeClearActionPayload;
+
+	/**
+	 * SetData Constructor
+	 * @param config The action config object
+	 */
+	constructor(config: NormalizeActionSchemaConfig) {
+		this.payload = { schemaKey: config.schema.key };
+	}
+}
+
+
+/**
+ * Action for settings denormalized entities in the store.
  * Also see `NormalizeDataPayload`.
  */
 export class SetData<T> implements Action {
@@ -352,6 +393,10 @@ export class SetData<T> implements Action {
 	 */
 	constructor(config: NormalizeActionConfig<T>) {
 		this.payload = normalize(config.data, [config.schema]);
+
+		if (!this.payload.entities[config.schema.key]) {
+			this.payload.entities[config.schema.key] = [];
+		}
 	}
 }
 

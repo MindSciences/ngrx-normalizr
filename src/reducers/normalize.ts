@@ -70,6 +70,10 @@ const initialState: NormalizedEntityState = {
  *
  * All entities and childs of the given schema will be replaced with the new entities.
  *
+ * On an `NormalizeActionTypes.CLEAR_DATA` action:
+ *
+ * All entities of the given schema will be removed.
+ *
  * On an `NormalizeActionTypes.ADD_DATA` action:
  *
  * Entities are identified by their id attribute set in the schema passed by the payload.
@@ -98,6 +102,18 @@ export function normalized(
 				entities: {
 					...state.entities,
 					...entities
+				}
+			};
+		}
+
+		case NormalizeActionTypes.CLEAR_DATA: {
+			const { schemaKey } = action.payload;
+
+			return {
+        result: [],
+				entities: {
+					...state.entities,
+					[schemaKey]: {}
 				}
 			};
 		}
