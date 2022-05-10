@@ -1,19 +1,15 @@
 {
 	"compileOnSave": false,
-	"files": ["./src/index.ts"],
-	"exclude": ["dist", "node_modules", "**/*/node_modules"],
+	"exclude": ["dist", "node_modules", "**/*/node_modules", "**/*/*.spec.ts"],
 	"compilerOptions": {
 		"outDir": "./dist",
-		"sourceMap": false,
-		"declaration": true,
-		"noImplicitAny": true,
+		"baseUrl": "./src/",
 		"noUnusedLocals": true,
 		"removeComments": true,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
 		"typeRoots": ["node_modules/@types"],
 		"lib": ["es2016", "dom", "es2017.object"],
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"sourceMap": true
 	},
 	"angularCompilerOptions": {
 		"genDir": "dist"
