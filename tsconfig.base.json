@@ -9,13 +9,11 @@
 		"noImplicitAny": true,
 		"noUnusedLocals": true,
 		"removeComments": true,
-		"moduleResolution": "node",
-		"module": "commonjs",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"target": "es5",
 		"typeRoots": ["node_modules/@types"],
-		"lib": ["es2016", "dom", "es2017.object"]
+		"lib": ["es2016", "dom", "es2017.object"],
+		"moduleResolution": "node"
 	},
 	"angularCompilerOptions": {
 		"genDir": "dist"
