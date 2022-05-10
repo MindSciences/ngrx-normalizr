@@ -21,7 +21,7 @@
 	},
 	"license": "MIT",
 	"peerDependencies": {
-		"@ngrx/store": "^4.0.3"
+		"@ngrx/store": ">4.0.3"
 	},
 	"dependencies": {
 		"normalizr": "^3.2.3"
