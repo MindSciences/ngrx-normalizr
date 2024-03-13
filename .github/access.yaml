@@ -1,0 +1,6 @@
+self: Sharecare/ngrx-normalizr
+policies:
+- repository: Sharecare/clarity4
+  permissions:
+    contents: read
+    issues: read
