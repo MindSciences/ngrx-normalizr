@@ -1,0 +1,17 @@
+{
+	"compileOnSave": false,
+	"exclude": ["dist", "node_modules", "**/*/node_modules", "**/*/*.spec.ts"],
+	"compilerOptions": {
+		"outDir": "./dist",
+		"baseUrl": "./src/",
+		"noUnusedLocals": true,
+		"removeComments": true,
+		"typeRoots": ["node_modules/@types"],
+		"lib": ["es2016", "dom", "es2017.object"],
+		"moduleResolution": "node",
+		"sourceMap": true
+	},
+	"angularCompilerOptions": {
+		"genDir": "dist"
+	}
+}

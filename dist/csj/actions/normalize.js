@@ -1,25 +1,29 @@
 "use strict";
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.actionCreators = exports.RemoveChildData = exports.RemoveData = exports.UpdateData = exports.AddChildData = exports.AddData = exports.SetData = exports.ClearData = exports.NormalizeActionTypes = void 0;
 var normalizr_1 = require("normalizr");
 var ACTION_NAMESPACE = '[@@Normalize]';
 var NormalizeActionTypes = (function () {
     function NormalizeActionTypes() {
     }
-    NormalizeActionTypes.CLEAR_DATA = ACTION_NAMESPACE + " Clear Data";
-    NormalizeActionTypes.SET_DATA = ACTION_NAMESPACE + " Set Data";
-    NormalizeActionTypes.ADD_DATA = ACTION_NAMESPACE + " Add Data";
-    NormalizeActionTypes.ADD_CHILD_DATA = ACTION_NAMESPACE + " Add Child Data";
-    NormalizeActionTypes.UPDATE_DATA = ACTION_NAMESPACE + " Update Data";
-    NormalizeActionTypes.REMOVE_DATA = ACTION_NAMESPACE + " Remove Data";
-    NormalizeActionTypes.REMOVE_CHILD_DATA = ACTION_NAMESPACE + " Remove Child Data";
+    NormalizeActionTypes.CLEAR_DATA = "".concat(ACTION_NAMESPACE, " Clear Data");
+    NormalizeActionTypes.SET_DATA = "".concat(ACTION_NAMESPACE, " Set Data");
+    NormalizeActionTypes.ADD_DATA = "".concat(ACTION_NAMESPACE, " Add Data");
+    NormalizeActionTypes.ADD_CHILD_DATA = "".concat(ACTION_NAMESPACE, " Add Child Data");
+    NormalizeActionTypes.UPDATE_DATA = "".concat(ACTION_NAMESPACE, " Update Data");
+    NormalizeActionTypes.REMOVE_DATA = "".concat(ACTION_NAMESPACE, " Remove Data");
+    NormalizeActionTypes.REMOVE_CHILD_DATA = "".concat(ACTION_NAMESPACE, " Remove Child Data");
     return NormalizeActionTypes;
 }());
 exports.NormalizeActionTypes = NormalizeActionTypes;
@@ -34,7 +38,7 @@ exports.ClearData = ClearData;
 var SetData = (function () {
     function SetData(config) {
         this.type = NormalizeActionTypes.SET_DATA;
-        this.payload = normalizr_1.normalize(config.data, [config.schema]);
+        this.payload = (0, normalizr_1.normalize)(config.data, [config.schema]);
         if (!this.payload.entities[config.schema.key]) {
             this.payload.entities[config.schema.key] = [];
         }
@@ -45,7 +49,7 @@ exports.SetData = SetData;
 var AddData = (function () {
     function AddData(config) {
         this.type = NormalizeActionTypes.ADD_DATA;
-        this.payload = normalizr_1.normalize(config.data, [config.schema]);
+        this.payload = (0, normalizr_1.normalize)(config.data, [config.schema]);
     }
     return AddData;
 }());
@@ -54,7 +58,7 @@ var AddChildData = (function () {
     function AddChildData(config) {
         this.type = NormalizeActionTypes.ADD_CHILD_DATA;
         var data = config.data, parentSchema = config.parentSchema, parentId = config.parentId, childSchema = config.childSchema;
-        this.payload = __assign({}, normalizr_1.normalize(data, [childSchema]), { parentSchemaKey: parentSchema.key, parentProperty: getRelationProperty(parentSchema, childSchema), parentId: parentId });
+        this.payload = __assign(__assign({}, (0, normalizr_1.normalize)(data, [childSchema])), { parentSchemaKey: parentSchema.key, parentProperty: getRelationProperty(parentSchema, childSchema), parentId: parentId });
     }
     return AddChildData;
 }());
@@ -64,7 +68,7 @@ var UpdateData = (function () {
         this.type = NormalizeActionTypes.UPDATE_DATA;
         var id = config.id, schema = config.schema, changes = config.changes;
         changes[schema._idAttribute] = id;
-        var normalized = normalizr_1.normalize([config.changes], [config.schema]);
+        var normalized = (0, normalizr_1.normalize)([config.changes], [config.schema]);
         this.payload = {
             id: id,
             key: schema.key,
@@ -153,3 +157,4 @@ function getRelationProperty(schema, childSchema) {
     }
     return parentProperty;
 }
+//# sourceMappingURL=normalize.js.map
